@@ -29,6 +29,12 @@
       "nome": "tamires smaniotto",
       "email": "tsmaniotto@bola.com",
       "fone": "21342121"
+    },
+    {
+      "id": 6,
+      "nome": "Leonardo",
+      "email": "leo@leo.com",
+      "fone": "12344141"
     }
   ],
   "Produtos": []

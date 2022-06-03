@@ -2,3 +2,52 @@
     box-sizing: border-box;
 }
 
+body {
+    display: flex;
+    width: auto;
+    height: auto;
+    margin: 0;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cadastro {
+    display: flex;
+    width: 50%;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.tabela {
+    border-collapse: collapse;
+    width: 70%;
+
+}
+
+.tabela tr, .tabela td {
+    border: 2px solid #ddd;
+    padding: 8px;
+}
+
+.tabela tr:nth-child(even) {
+    background-color: #f4f4f4;
+}
+
+#table tr:hover {
+    background-color: #666;
+    color: white;
+    cursor: pointer;
+}
+
+.tabela th {
+    padding: 10px;
+    text-align: left;
+    border:2px solid #ddd;
+    background-color: rgba(4, 44, 164, 0.65);
+    color: white;
+}
+
+
+
+
+

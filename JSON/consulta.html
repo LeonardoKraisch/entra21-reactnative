@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/consulta.css">
-    <title>Document</title>
+    <title>Cadastro e Consulta</title>
 </head>
+
 <body>
 
-    <div>
+    <div class="cadastro">
         <label for="nome">Nome: </label>
         <input type="text" name="nome" id="nome">
         <label for="email">Email: </label>
@@ -17,71 +19,72 @@
         <label for="fone">Telefone: </label>
         <input type="text" name="fone" id="fone">
     </div>
-    <div>
+    <div class="botoes">
         <button onclick="input()">Cadastrar</button>
         <button onclick="load()">Pesquisar</button>
     </div>
     <hr>
-    <table id="table">
-        <thead>
-            <tr>
-                <th>id</th>
-                <th>Nome</th>
-                <th>Email</th>
-                <th>Fone</th>
-            </tr>
-        </thead>
+    <table class="tabela">
+        <tr>
+            <th>id</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Fone</th>
+        </tr>
+        <tbody id="table">
+
+        </tbody>
     </table>
 
     <script>
-        
+
         function load() {
             fetch("http://localhost:3000/Clientes")
-            .then(clientes => clientes.json())
-            .then(clientes => criarTabela(clientes))
-            .catch(e => console.log(e))
+                .then(clientes => clientes.json())
+                .then(clientes => criarTabela(clientes))
+                .catch(e => console.log(e))
         }
 
         var table = document.getElementById("table")
 
         function criarTabela(clientes) {
-                for(cliente of clientes) {
-                    var body = document.createElement("tbody")
-                    var id = document.createElement("td")
-                    var nome = document.createElement("td")
-                    var email = document.createElement("td")
-                    var fone = document.createElement("td")
-                     
-                    id.appendChild(document.createTextNode(cliente.id))
-                    nome.appendChild(document.createTextNode(cliente.nome))
-                    email.appendChild(document.createTextNode(cliente.email))
-                    fone.appendChild(document.createTextNode(cliente.fone))
-                    body.appendChild(id)
-                    body.appendChild(nome)
-                    body.appendChild(email)
-                    body.appendChild(fone)
-                
-                    table.insertAdjacentElement("beforeend", body)
-                }
-                table = ""
+            for (cliente of clientes) {
+                var row = document.createElement("tr")
+                var id = document.createElement("td")
+                var nome = document.createElement("td")
+                var email = document.createElement("td")
+                var fone = document.createElement("td")
+
+                id.appendChild(document.createTextNode(cliente.id))
+                nome.appendChild(document.createTextNode(cliente.nome))
+                email.appendChild(document.createTextNode(cliente.email))
+                fone.appendChild(document.createTextNode(cliente.fone))
+                row.appendChild(id)
+                row.appendChild(nome)
+                row.appendChild(email)
+                row.appendChild(fone)
+
+                table.insertAdjacentElement("beforeend", row)
             }
+            table = ""
+        }
 
-            function input() {
-                const newEntry = {
-                    id: '',
-                    nome: document.getElementById("nome").value,
-                    email: document.getElementById("email").value,
-                    fone: document.getElementById("fone").value
-                };
+        function input() {
+            const newEntry = {
+                id: '',
+                nome: document.getElementById("nome").value,
+                email: document.getElementById("email").value,
+                fone: document.getElementById("fone").value
+            };
 
-                const options = {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(newEntry)
-                }
-                fetch("http://localhost:3000/Clientes", options)
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newEntry)
+            }
+            fetch("http://localhost:3000/Clientes", options)
                 .then(data => {
                     if (!data.ok) {
                         throw Error(data.status)
@@ -91,7 +94,8 @@
                 .catch(e => {
                     console.log(e)
                 })
-            }
+        }
     </script>
 </body>
+
 </html>
