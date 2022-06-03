@@ -1,0 +1,35 @@
+{
+  "Clientes": [
+    {
+      "id": 1,
+      "nome": "Antonio da Silva",
+      "email": "antonio@gmail.com",
+      "fone": "123-4567"
+    },
+    {
+      "id": 2,
+      "nome": "Maria da Silva",
+      "email": "maria@gmail.com",
+      "fone": "456-1234"
+    },
+    {
+      "id": 3,
+      "nome": "José da Silva",
+      "email": "jose@gmail.com",
+      "fone": "987-6543"
+    },
+    {
+      "id": 4,
+      "nome": "leonardo augusto",
+      "email": "leonardokraisch@outlook.com",
+      "fone": "12344321"
+    },
+    {
+      "id": 5,
+      "nome": "tamires smaniotto",
+      "email": "tsmaniotto@bola.com",
+      "fone": "21342121"
+    }
+  ],
+  "Produtos": []
+}
