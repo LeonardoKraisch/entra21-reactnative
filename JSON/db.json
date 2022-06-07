@@ -35,6 +35,12 @@
       "nome": "Leonardo",
       "email": "leo@leo.com",
       "fone": "12344141"
+    },
+    {
+      "id": 7,
+      "nome": "ana",
+      "email": "ana@gmail.com",
+      "fone": "123312312"
     }
   ],
   "Produtos": []

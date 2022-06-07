@@ -4,24 +4,52 @@
 
 body {
     display: flex;
-    width: auto;
-    height: auto;
     margin: 0;
     flex-direction: column;
     align-items: center;
+    background-color: #333;
+}
+
+main {
+    display: flex;
+    background-color: #f4f4f4;
+    width: 450px;
+    height: max-content;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    border-radius: 5px;
 }
 
 .cadastro {
     display: flex;
-    width: 50%;
+    width: 90%;
     justify-content: center;
     flex-direction: column;
+    padding: 15px;
+}
+
+.botoes {
+    display: flex;
+    margin: 10px;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.botoes button {
+    all:unset;
+    cursor: pointer;
+    border:rgb(145, 143, 143) solid 2px;
+    border-radius: 12px;
+    background-color: rgba(4, 44, 164, 0.65);
+    color: white;
+    padding: 4px;
 }
 
 .tabela {
     border-collapse: collapse;
-    width: 70%;
-
+    min-width: fit-content;
+    margin: 20px;
 }
 
 .tabela tr, .tabela td {
@@ -30,7 +58,7 @@ body {
 }
 
 .tabela tr:nth-child(even) {
-    background-color: #f4f4f4;
+    background-color: rgba(153, 153, 153, 0.541);
 }
 
 #table tr:hover {
