@@ -17,30 +17,6 @@
       "nome": "José da Silva",
       "email": "jose@gmail.com",
       "fone": "987-6543"
-    },
-    {
-      "id": 4,
-      "nome": "leonardo augusto",
-      "email": "leonardo@bol.com",
-      "fone": "12344321"
-    },
-    {
-      "id": 5,
-      "nome": "tamires smaniotto",
-      "email": "tsmaniotto@bola.com",
-      "fone": "21342121"
-    },
-    {
-      "id": 6,
-      "nome": "Leonardo",
-      "email": "leo@leo.com",
-      "fone": "12344141"
-    },
-    {
-      "id": 7,
-      "nome": "ana",
-      "email": "ana@gmail.com",
-      "fone": "123312312"
     }
   ],
   "Produtos": []
