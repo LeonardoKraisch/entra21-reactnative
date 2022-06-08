@@ -10,32 +10,34 @@
 </head>
 
 <body>
-<main>
-    <div class="cadastro">
-        <label for="nome">Nome: </label>
-        <input type="text" name="nome" id="nome">
-        <label for="email">Email: </label>
-        <input type="text" name="email" id="email">
-        <label for="fone">Telefone: </label>
-        <input type="text" name="fone" id="fone">
-    </div>
-    <div class="botoes">
-        <button onclick="input()">Cadastrar</button>
-        <button onclick="load()">Pesquisar</button>
-    </div>
+    <main>
+        <h1 id="label">Cadastro e Consulta de Clientes</h1>
+        <div class="cadastro" name="cadastro">
+            <label for="nome">Nome: </label>
+            <input type="text" name="nome" id="nome">
+            <label for="email">Email: </label>
+            <input type="text" name="email" id="email">
+            <label for="fone">Telefone: </label>
+            <input type="text" name="fone" id="fone">
+        </div>
+        <div class="botoes">
+            <button onclick="input()">Cadastrar</button>
+            <hr>
+            <button onclick="load()">Consultar</button>
+        </div>
 
-    <table class="tabela">
-        <tr>
-            <th>id</th>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>Fone</th>
-        </tr>
-        <tbody id="table">
+        <table class="tabela">
+            <tr>
+                <th>id</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Fone</th>
+            </tr>
+            <tbody id="table">
 
-        </tbody>
-    </table>
-</main>
+            </tbody>
+        </table>
+    </main>
 
     <script>
 
@@ -49,26 +51,59 @@
         var table = document.getElementById("table")
 
         function criarTabela(clientes) {
-            for (cliente of clientes) {
-                var row = document.createElement("tr")
-                var id = document.createElement("td")
-                var nome = document.createElement("td")
-                var email = document.createElement("td")
-                var fone = document.createElement("td")
+            const campoNome = document.getElementById("nome")
+            const campoEmail = document.getElementById("email")
+            const campoFone = document.getElementById("fone")
 
-                id.appendChild(document.createTextNode(cliente.id))
-                nome.appendChild(document.createTextNode(cliente.nome))
-                email.appendChild(document.createTextNode(cliente.email))
-                fone.appendChild(document.createTextNode(cliente.fone))
-                row.appendChild(id)
-                row.appendChild(nome)
-                row.appendChild(email)
-                row.appendChild(fone)
+            if (campoNome.value != '' || campoEmail.value != '' || campoFone.value != '') {
+                for (cliente of clientes) {
+                    if (campoNome.value == cliente.nome || campoEmail.value == cliente.email || campoFone.value == cliente.fone) {
+                        var row = document.createElement("tr")
+                        var id = document.createElement("td")
+                        var nome = document.createElement("td")
+                        var email = document.createElement("td")
+                        var fone = document.createElement("td")
 
-                table.insertAdjacentElement("beforeend", row)
+                        id.appendChild(document.createTextNode(cliente.id))
+                        nome.appendChild(document.createTextNode(cliente.nome))
+                        email.appendChild(document.createTextNode(cliente.email))
+                        fone.appendChild(document.createTextNode(cliente.fone))
+                        row.appendChild(id)
+                        row.appendChild(nome)
+                        row.appendChild(email)
+                        row.appendChild(fone)
+
+                        table.insertAdjacentElement("beforeend", row)
+                        table = ''
+                        return
+                    }
+                }
+            } else {
+                for (cliente of clientes) {
+
+                    var row = document.createElement("tr")
+                    var id = document.createElement("td")
+                    var nome = document.createElement("td")
+                    var email = document.createElement("td")
+                    var fone = document.createElement("td")
+
+                    id.appendChild(document.createTextNode(cliente.id))
+                    nome.appendChild(document.createTextNode(cliente.nome))
+                    email.appendChild(document.createTextNode(cliente.email))
+                    fone.appendChild(document.createTextNode(cliente.fone))
+                    row.appendChild(id)
+                    row.appendChild(nome)
+                    row.appendChild(email)
+                    row.appendChild(fone)
+
+                    table.insertAdjacentElement("beforeend", row)
+
+                }
+                table = ""
+                return
             }
-            table = ""
         }
+
 
         function input() {
             const newEntry = {

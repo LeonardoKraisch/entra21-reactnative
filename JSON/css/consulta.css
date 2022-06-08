@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+
 * {
     box-sizing: border-box;
+    font-family: 'Oswald', sans-serif;
 }
 
 body {
@@ -7,7 +10,7 @@ body {
     margin: 0;
     flex-direction: column;
     align-items: center;
-    background-color: #333;
+    background-color: #555;
 }
 
 main {
@@ -21,34 +24,57 @@ main {
     border-radius: 5px;
 }
 
+#label {
+    margin-top: 8%;
+    padding: 10px;
+    font-size: 2em;
+    border: rgba(85, 85, 85, 0.621) solid 2px;
+    border-radius: 4px;
+}
+
 .cadastro {
     display: flex;
     width: 90%;
     justify-content: center;
     flex-direction: column;
-    padding: 15px;
+    padding: 2px;
+}
+
+.cadastro label {
+    font-weight: bold;
+    padding: 7px 0px;
 }
 
 .botoes {
     display: flex;
-    margin: 10px;
-    justify-content: space-between;
-    width: 50%;
+    margin-top: 20px;
+    width: 90%;
+    background-color: rgba(129, 129, 129, 0.314);
+    padding: 15px;
+    border-radius: 5px;
+    justify-content: space-around;
 }
 
 .botoes button {
     all:unset;
     cursor: pointer;
     border:rgb(145, 143, 143) solid 2px;
-    border-radius: 12px;
+    border-radius: 6px;
     background-color: rgba(4, 44, 164, 0.65);
     color: white;
-    padding: 4px;
+    padding: 2px;
+    width: 30%;
+    text-align: center;
+}
+
+.botoes hr {
+    margin: 0;
 }
 
 .tabela {
     border-collapse: collapse;
     min-width: fit-content;
+    width: 90%;
     margin: 20px;
 }
 
@@ -73,6 +99,7 @@ main {
     border:2px solid #ddd;
     background-color: rgba(4, 44, 164, 0.65);
     color: white;
+    letter-spacing: 1px;
 }
 
 

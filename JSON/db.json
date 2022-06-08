@@ -17,6 +17,12 @@
       "nome": "José da Silva",
       "email": "jose@gmail.com",
       "fone": "987-6543"
+    },
+    {
+      "id": 4,
+      "nome": "Leonardo Augusto",
+      "email": "leonardo@gmail.com",
+      "fone": "98782345"
     }
   ],
   "Produtos": []
