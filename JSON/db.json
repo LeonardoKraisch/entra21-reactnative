@@ -23,6 +23,18 @@
       "nome": "Leonardo Augusto",
       "email": "leonardo@gmail.com",
       "fone": "98782345"
+    },
+    {
+      "id": 5,
+      "nome": "Leonardo Augusto Kraisch",
+      "email": "leo@leo.com",
+      "fone": "+5547996540237"
+    },
+    {
+      "id": 6,
+      "nome": "Leonardo Augusto Kraisch",
+      "email": "leo@leo.com",
+      "fone": "+5547996540237"
     }
   ],
   "Produtos": []

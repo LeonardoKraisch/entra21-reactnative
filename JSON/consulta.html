@@ -6,13 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/consulta.css">
-    <title>Cadastro e Consulta</title>
+    <title>Consulta</title>
 </head>
 
 <body>
     <main>
-        <h1 id="label">Cadastro e Consulta de Clientes</h1>
+        <h1 id="label">Consulta de Clientes</h1>
         <div class="cadastro" name="cadastro">
+            <label for="id">Id: </label>
+            <input type="text" name="id" id="id">
             <label for="nome">Nome: </label>
             <input type="text" name="nome" id="nome">
             <label for="email">Email: </label>
@@ -21,9 +23,8 @@
             <input type="text" name="fone" id="fone">
         </div>
         <div class="botoes">
-            <button onclick="input()">Cadastrar</button>
-            <hr>
-            <button onclick="load()">Consultar</button>
+            <button onclick="consultar()">Consultar</button>
+            <button onclick="limpar()">Limpar</button>
         </div>
 
         <table class="tabela">
@@ -41,96 +42,67 @@
 
     <script>
 
-        function load() {
+        function limpar() {
+            document.getElementById("id").value = ''
+            document.getElementById("nome").value = ''
+            document.getElementById("email").value = ''
+            document.getElementById("fone").value = ''
+        }
+
+        function consultar() {
             fetch("http://localhost:3000/Clientes")
                 .then(clientes => clientes.json())
-                .then(clientes => criarTabela(clientes))
+                .then(clientes => listar(clientes))
                 .catch(e => console.log(e))
         }
 
         var table = document.getElementById("table")
 
-        function criarTabela(clientes) {
+        function listar(clientes) {
+            const campoId = document.getElementById("id")
             const campoNome = document.getElementById("nome")
             const campoEmail = document.getElementById("email")
             const campoFone = document.getElementById("fone")
 
-            if (campoNome.value != '' || campoEmail.value != '' || campoFone.value != '') {
+            if (campoId.value != '' || campoNome.value != '' || campoEmail.value != '' || campoFone.value != '') {
+                table.innerHTML = ""
                 for (cliente of clientes) {
-                    if (campoNome.value == cliente.nome || campoEmail.value == cliente.email || campoFone.value == cliente.fone) {
-                        var row = document.createElement("tr")
-                        var id = document.createElement("td")
-                        var nome = document.createElement("td")
-                        var email = document.createElement("td")
-                        var fone = document.createElement("td")
-
-                        id.appendChild(document.createTextNode(cliente.id))
-                        nome.appendChild(document.createTextNode(cliente.nome))
-                        email.appendChild(document.createTextNode(cliente.email))
-                        fone.appendChild(document.createTextNode(cliente.fone))
-                        row.appendChild(id)
-                        row.appendChild(nome)
-                        row.appendChild(email)
-                        row.appendChild(fone)
-
-                        table.insertAdjacentElement("beforeend", row)
-                        table = ''
-                        return
+                    if (campoId.value == cliente.id || campoNome.value == cliente.nome || campoEmail.value == cliente.email || campoFone.value == cliente.fone) {
+                        criarTabela(cliente)
+                        break;
                     }
                 }
             } else {
+                table.innerHTML = ""
                 for (cliente of clientes) {
-
-                    var row = document.createElement("tr")
-                    var id = document.createElement("td")
-                    var nome = document.createElement("td")
-                    var email = document.createElement("td")
-                    var fone = document.createElement("td")
-
-                    id.appendChild(document.createTextNode(cliente.id))
-                    nome.appendChild(document.createTextNode(cliente.nome))
-                    email.appendChild(document.createTextNode(cliente.email))
-                    fone.appendChild(document.createTextNode(cliente.fone))
-                    row.appendChild(id)
-                    row.appendChild(nome)
-                    row.appendChild(email)
-                    row.appendChild(fone)
-
-                    table.insertAdjacentElement("beforeend", row)
-
+                    criarTabela(cliente)
                 }
-                table = ""
-                return
             }
         }
 
+        function criarTabela(cliente) {
+            var row = document.createElement("tr")
+            var id = document.createElement("td")
+            var nome = document.createElement("td")
+            var email = document.createElement("td")
+            var fone = document.createElement("td")
 
-        function input() {
-            const newEntry = {
-                id: '',
-                nome: document.getElementById("nome").value,
-                email: document.getElementById("email").value,
-                fone: document.getElementById("fone").value
-            };
-
-            const options = {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(newEntry)
-            }
-            fetch("http://localhost:3000/Clientes", options)
-                .then(data => {
-                    if (!data.ok) {
-                        throw Error(data.status)
-                    }
-                    return data.json();
-                })
-                .catch(e => {
-                    console.log(e)
-                })
+            id.appendChild(document.createTextNode(cliente.id))
+            nome.appendChild(document.createTextNode(cliente.nome))
+            email.appendChild(document.createTextNode(cliente.email))
+            fone.appendChild(document.createTextNode(cliente.fone))
+            row.appendChild(id)
+            row.appendChild(nome)
+            row.appendChild(email)
+            row.appendChild(fone)
+            table.insertAdjacentElement("beforeend", row)
+            row.addEventListener("click", chamarCliente)
         }
+
+        function chamarCliente() {
+            console.log(this)
+        }
+
     </script>
 </body>
 

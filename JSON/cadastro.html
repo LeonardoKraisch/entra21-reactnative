@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/consulta.css">
+    <title>Cadastro</title>
+</head>
+
+<body>
+    <main>
+        <h1 id="label">Cadastro de Cliente</h1>
+        <div class="cadastro" name="cadastro">
+            <label for="nome">Nome: </label>
+            <input type="text" name="nome" id="nome">
+            <label for="email">Email: </label>
+            <input type="text" name="email" id="email">
+            <label for="fone">Telefone: </label>
+            <input type="text" name="fone" id="fone">
+        </div>
+        <div class="botoes">
+            <button onclick="validarCadastro()">Cadastrar</button>
+            <button onclick="limpar()">Limpar</button>
+        </div>
+
+        <div id="usuario" class="usuario esconder">
+            <div class="display">
+                <title>Confirmar usuário</title>
+                <label for="nome">Nome:</label>
+                <p name="nome" id="confirmaUsuario"></p>
+                <label for="email">Email:</label>
+                <p name="email" id="confirmaEmail"></p>
+                <label for="fone">Fone:</label>
+                <p name="fone" id="confirmaFone"></p>
+
+                <button onclick="criarCadastro()">Confirmar</button>
+                <button onclick="cancelar()">Cancelar</button>
+
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+
+        function validarCadastro() {
+            const campoNome = document.getElementById("nome")
+            const campoEmail = document.getElementById("email")
+            const campoFone = document.getElementById("fone")
+
+            if (campoNome.value == '') {
+                alert("Digite um nome!")
+                campoNome.focus()
+            } else if (campoEmail.value == '') {
+                alert("Digite um email!")
+                campoEmail.focus()
+            } else if (campoFone.value == '') {
+                alert("Digite um telefone!")
+                campoFone.focus()
+            } else {
+                document.getElementById("usuario").classList.remove("esconder")
+                document.getElementById("confirmaUsuario").innerText = campoNome.value
+                document.getElementById("confirmaEmail").innerText = campoEmail.value
+                document.getElementById("confirmaFone").innerText = campoFone.value
+
+            }
+
+        }
+
+        function limpar() {
+            document.getElementById("nome").value = ''
+            document.getElementById("email").value = ''
+            document.getElementById("fone").value = ''
+        }
+
+        function criarCadastro() {
+            const newEntry = {
+                id: '',
+                nome: nome.value,
+                email: email.value,
+                fone: fone.value
+            };
+
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newEntry)
+            }
+            fetch("http://localhost:3000/Clientes", options)
+                .then(data => {
+                    if (!data.ok) {
+                        throw Error(data.status)
+                    }
+                    return data.json();
+                })
+                .catch(e => {
+                    console.log(e)
+                })
+        }
+
+        function cancelar() {
+            document.getElementById("usuario").classList.add("esconder")
+        }
+
+
+    </script>
+</body>
+
+</html>

@@ -47,7 +47,7 @@ main {
 
 .botoes {
     display: flex;
-    margin-top: 20px;
+    margin: 20px;
     width: 90%;
     background-color: rgba(129, 129, 129, 0.314);
     padding: 15px;
@@ -102,6 +102,55 @@ main {
     letter-spacing: 1px;
 }
 
+
+.usuario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    background: radial-gradient(rgba(136, 132, 132, 0.266), rgba(57, 57, 57, 0.996));
+    width: 100vw;
+    height: 100vh;
+}
+
+.display {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 20% 20% 25% 1fr;
+    align-items: baseline;
+    margin-top: 10vh;
+    border:solid 2px #555;
+    background-color: #ddd;
+    width: 250px;
+    min-width: max-content;
+    padding: 20px 25px;
+    min-height: max-content;
+    border-radius: 5px;
+    font-weight: bolder;
+    font-size: large;
+    letter-spacing: 1px;
+}
+
+.display button {
+    align-self: center;
+    margin: 5px;
+    width: 100px;
+    border-radius: 5px;
+    color: #f4f4f4;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.display button:first-of-type {
+    background-color: green;
+}
+.display button:last-of-type {
+    background-color: red;
+}
+
+.esconder {
+    display: none;
+}
 
 
 
