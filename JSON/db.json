@@ -2,7 +2,7 @@
   "Clientes": [
     {
       "id": 1,
-      "nome": "Antonio da Silva",
+      "nome": "Antonio Pereira",
       "email": "antonio@gmail.com",
       "fone": "123-4567"
     },
@@ -19,12 +19,6 @@
       "fone": "987-6543"
     },
     {
-      "id": 4,
-      "nome": "Leonardo Augusto",
-      "email": "leonardo@gmail.com",
-      "fone": "98782345"
-    },
-    {
       "id": 5,
       "nome": "Leonardo Augusto Kraisch",
       "email": "leo@leo.com",
@@ -32,9 +26,21 @@
     },
     {
       "id": 6,
-      "nome": "Leonardo Augusto Kraisch",
-      "email": "leo@leo.com",
-      "fone": "+5547996540237"
+      "nome": "Tamires Smaniotto",
+      "email": "tamires@leo.com",
+      "fone": "92237243"
+    },
+    {
+      "id": 7,
+      "nome": "Leocir Braga",
+      "email": "leocir@bol.com",
+      "fone": "234212131"
+    },
+    {
+      "id": 8,
+      "nome": "Liloca Calopsauros Kraischiotto ",
+      "email": "liloca@leo.com",
+      "fone": "98023212"
     }
   ],
   "Produtos": []

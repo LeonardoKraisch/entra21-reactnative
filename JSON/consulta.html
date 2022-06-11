@@ -24,6 +24,7 @@
         </div>
         <div class="botoes">
             <button onclick="consultar()">Consultar</button>
+            <hr>
             <button onclick="limpar()">Limpar</button>
         </div>
 
@@ -38,7 +39,29 @@
 
             </tbody>
         </table>
+        <div id="usuario" class="usuario esconder">
+            <div class="display2">
+                <label for="id">Id:</label>
+                <p name="id" id="confirmaId"></p>
+                <label for="nome">Nome:</label>
+                <input name="nome" readonly id="confirmaUsuario"></input>
+                <label for="email">Email:</label>
+                <input name="email" readonly id="confirmaEmail"></input>
+                <label for="fone">Fone:</label>
+                <input name="fone" readonly id="confirmaFone"></input>
+
+                <button class="alterar" onclick="alterarCadastro()">Alterar</button>
+                <button class="excluir" onclick="excluirCadastro()">Excluir</button>
+
+            </div>
+            <div id="fecharSalvar">
+                <button id="confirmarExclusao" class="esconder" onclick="confirmarExclusão()">CONFIRMAR</button>
+                <button id="salvar" class="esconder" onclick="confirmarAlteração()">Salvar</button>
+                <button onclick="cancelar()">Cancelar</button>
+            </div>
+        </div>
     </main>
+
 
     <script>
 
@@ -100,7 +123,82 @@
         }
 
         function chamarCliente() {
-            console.log(this)
+            const cliente = this.innerHTML.replaceAll("</td>", "").split("<td>")
+            fetch(`http://localhost:3000/Clientes/${cliente[1]}`)
+                .then(cliente => cliente.json())
+                .then(cliente => listarAtributos(cliente))
+                .catch(e => console.log(e))
+            document.getElementById("usuario").classList.remove("esconder")
+        }
+
+        function listarAtributos(cliente) {
+            document.getElementById("confirmaId").innerHTML = cliente.id
+            document.getElementById("confirmaUsuario").value = cliente.nome
+            document.getElementById("confirmaEmail").value = cliente.email
+            document.getElementById("confirmaFone").value = cliente.fone
+        }
+
+        function cancelar() {
+            document.getElementById("usuario").classList.add("esconder")
+            document.getElementById("salvar").classList.add("esconder")
+            document.getElementById("confirmarExclusao").classList.add("esconder")
+            document.getElementById("confirmaUsuario").setAttribute("readonly", true)
+            document.getElementById("confirmaEmail").setAttribute("readonly", true)
+            document.getElementById("confirmaFone").setAttribute("readonly", true)
+            document.getElementsByClassName("alterar")[0].classList.remove("selecionado")
+            document.getElementsByClassName("excluir")[0].classList.remove("selecionado")
+        }
+
+        function alterarCadastro() {
+            document.getElementsByClassName("alterar")[0].classList.add("selecionado")
+            document.getElementById("confirmaUsuario").removeAttribute("readonly")
+            document.getElementById("confirmaEmail").removeAttribute("readonly")
+            document.getElementById("confirmaFone").removeAttribute("readonly")
+            document.getElementById("salvar").classList.remove("esconder")
+            document.getElementsByClassName("excluir")[0].classList.remove("selecionado")
+            document.getElementById("confirmarExclusao").classList.add("esconder")
+        }
+
+        function confirmarAlteração() {
+            const options = {
+                method: "PUT",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    id: '',
+                    nome: document.getElementById("confirmaUsuario").value,
+                    email: document.getElementById("confirmaEmail").value,
+                    fone: document.getElementById("confirmaFone").value
+                })
+            }
+            const id = document.getElementById("confirmaId").innerHTML
+            fetch(`http://localhost:3000/Clientes/${id}`, options)
+                .then(cliente => cliente.json())
+                .then(resposta => {
+                    alert("Usuário alterado com sucesso!")
+                    console.log(resposta)
+                })
+                .catch(e => console.log(e))
+        }
+
+        function excluirCadastro() {
+            alert("Têm certeza que deseja excluir este cadastro? Clique no botão CONFIRMAR para prosseguir ou CANCELAR para retornar.")
+            document.getElementById("confirmarExclusao").classList.remove("esconder")
+            document.getElementsByClassName("excluir")[0].classList.add("selecionado")
+            document.getElementsByClassName("alterar")[0].classList.remove("selecionado")
+            document.getElementById("salvar").classList.add("esconder")
+        }
+
+        function confirmarExclusão() {
+            const id = document.getElementById("confirmaId").innerHTML
+            fetch(`http://localhost:3000/Clientes/${id}`, { method: 'DELETE' })
+                .then(resposta => resposta.json())
+                .then(resposta => {
+                    alert("Usuário excluído.")
+                    console.log(resposta)
+                })
+                .catch(e => console.log(e))
         }
 
     </script>

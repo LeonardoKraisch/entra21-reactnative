@@ -21,7 +21,7 @@
             <input type="text" name="fone" id="fone">
         </div>
         <div class="botoes">
-            <button onclick="validarCadastro()">Cadastrar</button>
+            <button onclick="validarCadastro()">Cadastrar</button><hr>
             <button onclick="limpar()">Limpar</button>
         </div>
 
@@ -95,13 +95,14 @@
                     if (!data.ok) {
                         throw Error(data.status)
                     }
+                    alert("Usuário cadastrado com sucesso!")
                     return data.json();
                 })
                 .catch(e => {
                     console.log(e)
                 })
         }
-
+ 
         function cancelar() {
             document.getElementById("usuario").classList.add("esconder")
         }
