@@ -41,7 +41,12 @@
       "nome": "Liloca Calopsauros Kraischiotto ",
       "email": "liloca@leo.com",
       "fone": "98023212"
+    },
+    {
+      "id": 9,
+      "nome": "Sully da Silva",
+      "email": "sullyopeixe@glub.com",
+      "fone": "92321245"
     }
-  ],
-  "Produtos": []
+  ]
 }

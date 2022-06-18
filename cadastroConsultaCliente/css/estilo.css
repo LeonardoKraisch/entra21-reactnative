@@ -132,7 +132,8 @@ button:hover {
     border: solid 2px #555;
     background-color: #ddd;
     width: 250px;
-    min-width: fit-content;
+    min-width: max-content;
+    overflow: hidden;
     padding: 20px 25px;
     min-height: fit-content;
     border-radius: 5px;

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/consulta.css">
+    <link rel="stylesheet" href="./css/estilo.css">
     <title>Consulta</title>
 </head>
 
@@ -65,11 +65,19 @@
 
     <script>
 
+        function getId(id) {
+            return document.getElementById(`${id}`)
+        }
+
+        function getClass(classe) {
+            return document.getElementsByClassName(`${classe}`)
+        }
+
         function limpar() {
-            document.getElementById("id").value = ''
-            document.getElementById("nome").value = ''
-            document.getElementById("email").value = ''
-            document.getElementById("fone").value = ''
+            getId("id").value = ''
+            getId("nome").value = ''
+            getId("email").value = ''
+            getId("fone").value = ''
         }
 
         function consultar() {
@@ -79,13 +87,13 @@
                 .catch(e => console.log(e))
         }
 
-        var table = document.getElementById("table")
+        var table = getId("table")
 
         function listar(clientes) {
-            const campoId = document.getElementById("id")
-            const campoNome = document.getElementById("nome")
-            const campoEmail = document.getElementById("email")
-            const campoFone = document.getElementById("fone")
+            const campoId = getId("id")
+            const campoNome = getId("nome")
+            const campoEmail = getId("email")
+            const campoFone = getId("fone")
 
             if (campoId.value != '' || campoNome.value != '' || campoEmail.value != '' || campoFone.value != '') {
                 table.innerHTML = ""
@@ -128,35 +136,35 @@
                 .then(cliente => cliente.json())
                 .then(cliente => listarAtributos(cliente))
                 .catch(e => console.log(e))
-            document.getElementById("usuario").classList.remove("esconder")
+            getId("usuario").classList.remove("esconder")
         }
 
         function listarAtributos(cliente) {
-            document.getElementById("confirmaId").innerHTML = cliente.id
-            document.getElementById("confirmaUsuario").value = cliente.nome
-            document.getElementById("confirmaEmail").value = cliente.email
-            document.getElementById("confirmaFone").value = cliente.fone
+            getId("confirmaId").innerHTML = cliente.id
+            getId("confirmaUsuario").value = cliente.nome
+            getId("confirmaEmail").value = cliente.email
+            getId("confirmaFone").value = cliente.fone
         }
 
         function cancelar() {
-            document.getElementById("usuario").classList.add("esconder")
-            document.getElementById("salvar").classList.add("esconder")
-            document.getElementById("confirmarExclusao").classList.add("esconder")
-            document.getElementById("confirmaUsuario").setAttribute("readonly", true)
-            document.getElementById("confirmaEmail").setAttribute("readonly", true)
-            document.getElementById("confirmaFone").setAttribute("readonly", true)
-            document.getElementsByClassName("alterar")[0].classList.remove("selecionado")
-            document.getElementsByClassName("excluir")[0].classList.remove("selecionado")
+            getId("usuario").classList.add("esconder")
+            getId("salvar").classList.add("esconder")
+            getId("confirmarExclusao").classList.add("esconder")
+            getId("confirmaUsuario").setAttribute("readonly", true)
+            getId("confirmaEmail").setAttribute("readonly", true)
+            getId("confirmaFone").setAttribute("readonly", true)
+            getClass("alterar")[0].classList.remove("selecionado")
+            getClass("excluir")[0].classList.remove("selecionado")
         }
 
         function alterarCadastro() {
-            document.getElementsByClassName("alterar")[0].classList.add("selecionado")
-            document.getElementById("confirmaUsuario").removeAttribute("readonly")
-            document.getElementById("confirmaEmail").removeAttribute("readonly")
-            document.getElementById("confirmaFone").removeAttribute("readonly")
-            document.getElementById("salvar").classList.remove("esconder")
-            document.getElementsByClassName("excluir")[0].classList.remove("selecionado")
-            document.getElementById("confirmarExclusao").classList.add("esconder")
+            getClass("alterar")[0].classList.add("selecionado")
+            getId("confirmaUsuario").removeAttribute("readonly")
+            getId("confirmaEmail").removeAttribute("readonly")
+            getId("confirmaFone").removeAttribute("readonly")
+            getId("salvar").classList.remove("esconder")
+            getClass("excluir")[0].classList.remove("selecionado")
+            getId("confirmarExclusao").classList.add("esconder")
         }
 
         function confirmarAlteração() {
@@ -167,12 +175,12 @@
                 },
                 body: JSON.stringify({
                     id: '',
-                    nome: document.getElementById("confirmaUsuario").value,
-                    email: document.getElementById("confirmaEmail").value,
-                    fone: document.getElementById("confirmaFone").value
+                    nome: getId("confirmaUsuario").value,
+                    email: getId("confirmaEmail").value,
+                    fone: getId("confirmaFone").value
                 })
             }
-            const id = document.getElementById("confirmaId").innerHTML
+            const id = getId("confirmaId").innerHTML
             fetch(`http://localhost:3000/Clientes/${id}`, options)
                 .then(cliente => cliente.json())
                 .then(resposta => {
@@ -184,14 +192,14 @@
 
         function excluirCadastro() {
             alert("Têm certeza que deseja excluir este cadastro? Clique no botão CONFIRMAR para prosseguir ou CANCELAR para retornar.")
-            document.getElementById("confirmarExclusao").classList.remove("esconder")
-            document.getElementsByClassName("excluir")[0].classList.add("selecionado")
-            document.getElementsByClassName("alterar")[0].classList.remove("selecionado")
-            document.getElementById("salvar").classList.add("esconder")
+            getId("confirmarExclusao").classList.remove("esconder")
+            getClass("excluir")[0].classList.add("selecionado")
+            getClass("alterar")[0].classList.remove("selecionado")
+            getId("salvar").classList.add("esconder")
         }
 
         function confirmarExclusão() {
-            const id = document.getElementById("confirmaId").innerHTML
+            const id = getId("confirmaId").innerHTML
             fetch(`http://localhost:3000/Clientes/${id}`, { method: 'DELETE' })
                 .then(resposta => resposta.json())
                 .then(resposta => {
