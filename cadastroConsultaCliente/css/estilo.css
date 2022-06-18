@@ -25,6 +25,29 @@ main {
     border-radius: 5px;
 }
 
+.menucontainer {
+    height: 40px;
+    width: 100vw;
+    display: flex;
+    background-color: #f4f4f4;
+}
+.menucontainer a {
+    all: unset;
+    cursor: pointer;
+    font-size: 20px;
+    align-self: center;
+    margin-left: 3vw;
+}
+
+.menucontainer a:hover {
+    text-decoration: underline 2px;
+}
+
+iframe {
+    height: 100vh;
+    width: 100vw;
+}
+
 button:hover {
     border: 2px white solid;
 }
@@ -33,7 +56,7 @@ button:hover {
     margin-top: 8%;
     padding: 10px;
     font-size: 2em;
-    border: rgba(85, 85, 85, 0.621) solid 2px;
+    border: rgb(0, 0, 0) solid 2px;
     border-radius: 4px;
 }
 
