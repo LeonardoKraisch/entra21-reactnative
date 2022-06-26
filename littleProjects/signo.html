@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Amatic SC', cursive;
+            font-size: larger;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            background-color: black;
+            color: aliceblue;
+        }
+
+        main {
+            margin-top: 1vh;
+            display: flex;
+            justify-content: center;
+            width: 350px;
+            height: max-content;
+            flex-direction: column;
+            text-align: center;
+            font-size: larger;
+        }
+
+        main label {
+            padding: 5px;
+        }
+
+        main input {
+            margin: 10px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        main button {
+            all: unset;
+            background-color: white;
+            color: #000;
+            font-size: 50px;
+            border-radius: 20px;
+            width: max-content;
+            padding: 3px 10px;
+            align-self: center;
+            cursor: pointer;
+        }
+
+        main button:hover {
+            color: rgba(187, 40, 40, 0.839);
+        }
+
+        h1 {
+            font-size: 50px;
+        }
+
+        h2 {
+            font-size: 40px;
+        }
+    </style>
+    <title>Signo</title>
+</head>
+<body>
+    <main>
+        <h2>Descubra seu signo do Zodíaco!</h2>
+        <label for="#nome">Qual o seu nome?</label>
+        <input type="text" name="" id="nome">
+        <label for="#data">Qual sua data de nascimento?</label>
+        <input type="date" name="" id="data">
+        <button type="submit" onclick="signo()">Descobrir!</button>
+        
+        <h1 id="resposta"></h1>
+    </main>
+    <script>
+        function signo(){
+            var data = new Date(document.getElementById("data").value)
+            var nome = document.getElementById("nome").value
+            var msg 
+            var resposta = document.getElementById("resposta")
+            var dia = data.getDate()+1
+            var mes = data.getMonth()+1
+            
+            
+            if (mes == 1) {
+                if(dia <= 20) {
+                    msg = "Capricórnio"
+                } else {
+                    msg = "Aquário"
+                }
+            } 
+            if (mes == 2) {
+                if(dia <= 19) {
+                    msg = "Aquário"
+                } else {
+                    msg = "Peixes"
+                }
+            } 
+            if (mes == 3) {
+                if(dia <= 20) {
+                    msg = "Peixes"
+                } else {
+                    msg = "Áries"
+                }
+            } 
+            if (mes == 4) {
+                if(dia <= 20) {
+                    msg = "Áries"
+                } else {
+                    msg = "Touro"
+                }
+            } 
+            if (mes == 5) {
+                if(dia <= 20) {
+                    msg = "Touro"
+                } else {
+                    msg = "Gêmeos"
+                }
+            } 
+            if (mes == 6) {
+                if(dia <= 20) {
+                    msg = "Gêmeos"
+                } else {
+                    msg = "Câncer"
+                }
+            } 
+            if (mes == 7) {
+                if(dia <= 21) {
+                    msg = "Câncer"
+                } else {
+                    msg = "Leão"
+                }
+            } 
+            if (mes == 8) {
+                if(dia <= 22) {
+                    msg = "Leão"
+                } else {
+                    msg = "Virgem"
+                }
+            } 
+            if (mes == 9) {
+                if(dia <= 22) {
+                    msg = "Virgem"
+                } else {
+                    msg = "Libra"
+                }
+            } 
+            if (mes == 10) {
+                if(dia <= 22) {
+                    msg = "Libra"
+                } else {
+                    msg = "Escorpião"
+                }
+            } 
+            if (mes == 11) {
+                if(dia <= 21) {
+                    msg = "Escorpião"
+                } else {
+                    msg = "Sagitário"
+                }
+            } 
+            if (mes == 12) {
+                if(dia <= 21) {
+                    msg = "Sagitário"
+                } else {
+                    msg = "Capricórnio"
+                }
+            } 
+            return resposta.innerHTML = `${nome}, seu signo do zodíaco é ${msg}.`
+        }
+    </script>
+</body>
+</html>

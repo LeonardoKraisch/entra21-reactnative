@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    
+    <style>
+        .calculadora {
+            text-align: center;
+            max-width: 224px;
+            height: 50%;
+            margin: auto;
+            margin-top: 10%;
+            padding: 20px 10px 40px 10px;
+            border-radius: 10px;
+            background: radial-gradient(rgba(32, 32, 32, 0.432), rgba(87, 86, 86, 0.205));
+            box-shadow:4px 4px 1px 1px #888;
+            font-weight: bold;
+        }
+        .visor {
+            border: solid 5px #888;
+            border-radius: 3px;
+            background: linear-gradient(rgba(32, 197, 197, 0.521), rgba(1, 209, 140, 0.219));
+        }
+
+        .visor > input {
+            font-family: 'VT323', monospace;
+            font-size: 20px;
+            border: none;
+            width: 97%;
+            text-align: right;
+            background: linear-gradient(rgba(32, 197, 197, 0.521), rgba(1, 209, 140, 0.219));
+            font-weight: bold;    
+        }
+        
+
+        .teclado > button {
+            color: aliceblue;
+            font-weight: bolder;
+            width: 35px;
+            height: 25px;
+            margin: 5px;
+            border: none;
+            background: radial-gradient(#556, #767);
+            padding: 1px 3px;
+            border-radius: 4px;
+        }
+
+        #botoesBaixos {
+            width: 35.5%;
+        }
+        
+        .destaque >button {
+            box-shadow:1px 1px 0.5px 0.5px #000; 
+        }
+
+        .destaque >button:active {
+            box-shadow:none; 
+        }
+
+
+    </style>
+
+    <title>Calculadora</title>
+</head>
+
+<body>
+
+    <div class="calculadora">
+
+        <div class="visor">
+            <input id="valor1" type="text"><br>
+            <input id="operacao" type="text"><br>
+            <input id="valor2" type="text">
+        </div><br>
+    
+        <div class="teclado destaque">
+            <button onclick="pegarValor('7')">7</button><button onclick="pegarValor('8')">8</button><button onclick="pegarValor('9')">9</button><button onclick="selecionarOperacao('*')">x</button><br>
+            <button onclick="pegarValor('4')">4</button><button onclick="pegarValor('5')">5</button><button onclick="pegarValor('6')">6</button><button onclick="selecionarOperacao('/')">÷</button><br>
+            <button onclick="pegarValor('1')">1</button><button onclick="pegarValor('2')">2</button><button onclick="pegarValor('3')">3</button><button onclick="selecionarOperacao('-')">-</button><br>
+            <button onclick="limpeza()">C</button><button onclick="pegarValor('0')">0</button><button onclick="pegarValor('.')">.</button><button onclick="selecionarOperacao('+')">+</button><br>
+            <button onclick="limpar()" type="reset" id="botoesBaixos" style="color: red;">CE</button><button onclick="resultado()" id="botoesBaixos">=</button>
+        </div>
+
+    </div>
+
+    <script>
+        let numero1 = '';
+        let numero2 = '';
+        let valor1 = document.getElementById("valor1") 
+        let operacao = document.getElementById("operacao");
+        let valor2 = document.getElementById("valor2")
+        
+        function pegarValor(numero) {
+            if (operacao.value == '') {
+                numero1 += numero
+                valor1.value = parseFloat(numero1)
+            } else {
+                numero2 += numero
+                valor2.value = parseFloat(numero2)
+            }
+        }
+
+        function selecionarOperacao(operador) {
+            if(valor2.value != '') {
+                resultado()
+            }
+            operacao.value = ''
+            operacao.value = operador
+        }
+
+        function limpar() {
+            valor1.value = '';
+            valor2.value = '';
+            operacao.value = '';
+            numero1 = '';
+            numero2 = '';
+        }
+
+        function limpeza() {
+            if(numero2 != '') {
+                numero2 = numero2.substring(0, numero2.length - 1)
+                valor2.value = numero2
+                return
+            } else if (numero2 == '' && operacao.value != '') {
+                operacao.value = operacao.value.substring(0, operacao.length -1)
+                return
+            } else if (operacao.value == '') {
+                numero1 = numero1.substring(0, numero1.length - 1)
+                valor1.value = numero1
+            }
+            
+        } 
+
+        function resultado (num1, op, num2){
+            num1 = parseFloat(valor1.value)
+            num2 = parseFloat(valor2.value)
+            op = operacao.value
+            let total
+
+            if(num2 == '' || num1 == '' || op == '') {
+                return
+
+            } else {
+                switch(op) {
+
+                    case '*':
+                    total = num1 * num2
+                    limpaLanca(total)
+                    break;
+
+                    case '/':
+                    total = num1 / num2
+                    limpaLanca(total)
+                    break;
+
+                    case '-':
+                    total = num1 - num2
+                    limpaLanca(total)
+                    break;
+
+                    case '+':
+                    total = num1 + num2
+                    limpaLanca(total)
+                    break;
+
+                    default:
+                        return
+
+                }
+
+            }
+
+        }
+
+        function limpaLanca(resultado){
+
+            valor1.value = resultado
+            valor2.value = '';
+            operacao.value = '';
+            numero2 = '';
+        }
+
+
+
+    </script>
+
+</body>
+</html>
