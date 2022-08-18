@@ -31,8 +31,9 @@ var Products = /** @class */ (function () {
         __metadata("design:type", String)
     ], Products.prototype, "preco", void 0);
     __decorate([
-        (0, typeorm_1.ManyToOne)(function () { return ShoppingCart_1.default; }, function (cart) { return cart.produtos; }),
-        __metadata("design:type", ShoppingCart_1.default)
+        (0, typeorm_1.ManyToMany)(function () { return ShoppingCart_1.default; }),
+        (0, typeorm_1.JoinTable)({ name: "produtos_id" }),
+        __metadata("design:type", Array)
     ], Products.prototype, "carrinho", void 0);
     Products = __decorate([
         (0, typeorm_1.Entity)("tb_stock")

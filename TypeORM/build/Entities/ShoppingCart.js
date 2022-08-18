@@ -11,7 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
 var User_1 = require("./User");
-var Stock_1 = require("./Stock");
 var Cart = /** @class */ (function () {
     function Cart() {
     }
@@ -24,12 +23,8 @@ var Cart = /** @class */ (function () {
         __metadata("design:type", String)
     ], Cart.prototype, "total", void 0);
     __decorate([
-        (0, typeorm_1.OneToMany)(function () { return Stock_1.default; }, function (product) { return product.carrinho; }),
-        __metadata("design:type", Array)
-    ], Cart.prototype, "produtos", void 0);
-    __decorate([
         (0, typeorm_1.OneToOne)(function () { return User_1.default; }),
-        (0, typeorm_1.JoinColumn)(),
+        (0, typeorm_1.JoinColumn)({ name: 'user_id' }),
         __metadata("design:type", User_1.default)
     ], Cart.prototype, "user", void 0);
     Cart = __decorate([

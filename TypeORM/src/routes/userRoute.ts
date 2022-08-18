@@ -3,15 +3,6 @@ import dataSource from "../dataSource"
 import Users from "../Entities/User"
 const router = Router()
 
-dataSource
-    .initialize()
-    .then(() => {
-        console.log("Data Source has been initialized!")
-    })
-    .catch((err) => {
-        console.error("Error during Data Source initialization:", err)
-    })
-
 router.get("/", async function (req: Request, res: Response) {
     const users = await dataSource.getRepository(Users).find()
     res.json(users)

@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, OneToOne, OneToMany, ManyToOne } from "typeorm"
+import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, OneToOne, OneToMany, ManyToOne, ManyToMany, JoinTable } from "typeorm"
 import Cart from "./ShoppingCart"
 
 @Entity("tb_stock")
@@ -15,6 +15,7 @@ export default class Products {
     @Column()
     preco: string
 
-    @ManyToOne(() => Cart, (cart) => cart.produtos)
-    carrinho: Cart
+    @ManyToMany(() => Cart)
+    @JoinTable({name: "produtos_id"})
+    carrinho: Cart[]
 }

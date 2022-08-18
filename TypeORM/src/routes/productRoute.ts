@@ -3,15 +3,6 @@ import dataSource from "../dataSource"
 import Stock from "../Entities/Stock"
 const router = Router()
 
-dataSource
-    .initialize()
-    .then(() => {
-        console.log("Data Source has been initialized!")
-    })
-    .catch((err) => {
-        console.error("Error during Data Source initialization:", err)
-    })
-
 router.get("/", async function (req: Request, res: Response) {
     const products = await dataSource.getRepository(Stock).find()
     res.json(products)

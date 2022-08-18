@@ -40,14 +40,6 @@ var express_1 = require("express");
 var dataSource_1 = require("../dataSource");
 var Stock_1 = require("../Entities/Stock");
 var router = (0, express_1.Router)();
-dataSource_1.default
-    .initialize()
-    .then(function () {
-    console.log("Data Source has been initialized!");
-})
-    .catch(function (err) {
-    console.error("Error during Data Source initialization:", err);
-});
 router.get("/", function (req, res) {
     return __awaiter(this, void 0, void 0, function () {
         var products;

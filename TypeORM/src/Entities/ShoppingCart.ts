@@ -12,10 +12,7 @@ export default class Cart {
     @Column()
     total: string
 
-    @OneToMany(() => Products, (product) => product.carrinho)
-    produtos: Products[]
-
     @OneToOne(() => Users)
-    @JoinColumn()
+    @JoinColumn({name: 'user_id'})
     user: Users
 }
